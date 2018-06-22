@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span>Lich Su Dong Tiens</span>
+        <button class="btn btn-primary float-right jh-create-entity create-lich-su-dong-tien" [routerLink]="['/', { outlets: { popup: ['lich-su-dong-tien-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Lich Su Dong Tien
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="lichSuDongTiens">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Ngaybatdau</span></th>
+            <th><span>Ngayketthuc</span></th>
+            <th><span>Sotien</span></th>
+            <th><span>Trangthai</span></th>
+            <th><span>Ghi Chu</span></th>
+            <th><span>Nhan Vien</span></th>
+            <th><span>Hop Dong</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let lichSuDongTien of lichSuDongTiens ;trackBy: trackId">
+                <td><a [routerLink]="['../lich-su-dong-tien', lichSuDongTien.id ]">{{lichSuDongTien.id}}</a></td>
+                <td>{{lichSuDongTien.ngaybatdau | date:'medium'}}</td>
+                <td>{{lichSuDongTien.ngayketthuc | date:'medium'}}</td>
+                <td>{{lichSuDongTien.sotien}}</td>
+                <td>{{lichSuDongTien.trangthai}}</td>
+                <td>{{lichSuDongTien.ghiChu}}</td>
+                <td>
+                    <div *ngIf="lichSuDongTien.nhanVienId">
+                        <a [routerLink]="['../nhan-vien', lichSuDongTien.nhanVienId  ]" >{{lichSuDongTien.nhanVienId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="lichSuDongTien.hopDongId">
+                        <a [routerLink]="['../hop-dong', lichSuDongTien.hopDongId  ]" >{{lichSuDongTien.hopDongId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../lich-su-dong-tien', lichSuDongTien.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'lich-su-dong-tien/'+ lichSuDongTien.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'lich-su-dong-tien/'+ lichSuDongTien.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

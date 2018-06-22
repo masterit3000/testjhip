@@ -1,0 +1,86 @@
+<div>
+    <h2>
+        <span>Khach Hangs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-khach-hang" [routerLink]="['/', { outlets: { popup: ['khach-hang-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Khach Hang
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="khachHangs">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Ten</span></th>
+            <th><span>Diachi</span></th>
+            <th><span>Dienthoai</span></th>
+            <th><span>Cmnd</span></th>
+            <th><span>Trangthai</span></th>
+            <th><span>Ngay Tao</span></th>
+            <th><span>Email</span></th>
+            <th><span>Facebook</span></th>
+            <th><span>Ghi Chu</span></th>
+            <th><span>Xa</span></th>
+            <th><span>Cua Hang</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let khachHang of khachHangs ;trackBy: trackId">
+                <td><a [routerLink]="['../khach-hang', khachHang.id ]">{{khachHang.id}}</a></td>
+                <td>{{khachHang.ten}}</td>
+                <td>{{khachHang.diachi}}</td>
+                <td>{{khachHang.dienthoai}}</td>
+                <td>{{khachHang.cmnd}}</td>
+                <td>{{khachHang.trangthai}}</td>
+                <td>{{khachHang.ngayTao | date:'medium'}}</td>
+                <td>{{khachHang.email}}</td>
+                <td>{{khachHang.facebook}}</td>
+                <td>{{khachHang.ghiChu}}</td>
+                <td>
+                    <div *ngIf="khachHang.xaId">
+                        <a [routerLink]="['../xa', khachHang.xaId  ]" >{{khachHang.xaId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="khachHang.cuaHangId">
+                        <a [routerLink]="['../cua-hang', khachHang.cuaHangId  ]" >{{khachHang.cuaHangId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../khach-hang', khachHang.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'khach-hang/'+ khachHang.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'khach-hang/'+ khachHang.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
